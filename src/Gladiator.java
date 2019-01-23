@@ -6,10 +6,10 @@ public class Gladiator {
     private Integer magic = 50;
     private Integer minStrength = 10;
     private Integer maxStrength = 30;
+    private Boolean isDead = false;
 
-    @Override
     public String toString() {
-        return name + " Health: " + health + " Magic: " + magic;
+        return name + "\n [Health: " + health + "] [Magic: " + magic + "]";
     }
 
     public String getName() {
@@ -32,4 +32,13 @@ public class Gladiator {
         return ThreadLocalRandom.current().nextInt(minStrength, maxStrength + 1);
     }
 
+    public void takeDamage(Integer attackDamage) {
+        health = health - attackDamage;
+    }
+    public void checkIfDead() {
+        if (health <=0) {
+            isDead = true;
+        }
+
+    }
 }
