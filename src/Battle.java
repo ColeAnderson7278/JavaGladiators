@@ -28,9 +28,11 @@ public class Battle {
             System.out.println(toString());
             if (roundNumber % 2 != 0){
                 takeTurn(fighterOne, fighterTwo);
+                fighterTwo.checkIfDead();
                 roundNumber ++;
             }else{
                 takeTurn(fighterTwo, fighterOne);
+                fighterOne.checkIfDead();
                 roundNumber ++;
             }
         }
@@ -38,15 +40,22 @@ public class Battle {
     }
     
     private void takeTurn(Gladiator attacker, Gladiator defender){
-        System.out.println(attacker.getName() + "take your turn.");
-        System.out.println("1)Attack 2)Do Nothing");
-        String choice = user.nextLine();
-        if (choice.equals("1")){
-            defender.takeDamage(attacker.getAttackDamage());
+
+        while (true) {
+            System.out.println(attacker.getName() + " take your turn.");
+            System.out.println("1) Attack");
+            System.out.println("2) Do Nothing");
+            String choice = user.nextLine();
+            if (choice.equals("1")) {
+                defender.takeDamage(attacker.getAttackDamage());
+                break;
+            } else if (choice.equals("2")) {
+                defender.takeDamage(0);
+                break;
+            }else {
+                System.out.println("Incorrect input!!!");
+            }
         }
-        else if (choice.equals("2")){
-            defender.takeDamage(0);
-        }takeTurn(attacker, defender);
     }
     
     private void declareWinner(){
