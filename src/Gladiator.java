@@ -28,6 +28,10 @@ public class Gladiator {
         return magic;
     }
 
+    public Boolean getIsDead() {
+        return isDead;
+    }
+
     public Integer getAttackDamage(){
         return ThreadLocalRandom.current().nextInt(minStrength, maxStrength + 1);
     }
