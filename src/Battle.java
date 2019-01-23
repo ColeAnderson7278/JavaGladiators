@@ -39,30 +39,32 @@ public class Battle {
         declareWinner();
     }
     
-    private void takeTurn(Gladiator attacker, Gladiator defender){
+    private void takeTurn(Gladiator attacker, Gladiator defender) {
 
         while (true) {
             System.out.println(attacker.getName() + " take your turn.");
-            System.out.println("1) Attack");
-            System.out.println("2) Do Nothing");
+            System.out.println("1) Attack (Deals damage to opponent based on your strength)");
+            System.out.println("2) Heal (Uses one point of magic to gain back health)");
+            System.out.println("3) Skip Turn (Skips your turn to gain back magic point(s))");
             String choice = user.nextLine();
             if (choice.equals("1")) {
                 defender.takeDamage(attacker.getAttackDamage());
                 break;
             } else if (choice.equals("2")) {
-                defender.takeDamage(0);
+                attacker.healWithMagic();
                 break;
-            }else {
-                System.out.println("Incorrect input!!!");
-            }
+            } else if (choice.equals("3")){
+                attacker.buildUpMagic();
+                break;
+            }System.out.println("Incorrect Input!!!");
         }
     }
-    
+
     private void declareWinner(){
         if (fighterOne.getIsDead()){
-            System.out.println(fighterOne.getName() + " is the winner!!!");
-        }else{
             System.out.println(fighterTwo.getName() + " is the winner!!!");
+        }else{
+            System.out.println(fighterOne.getName() + " is the winner!!!");
         }
     }
 }
