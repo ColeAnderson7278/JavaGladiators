@@ -8,6 +8,9 @@ public class Battle {
 
     public Battle(){
         setPlayerNames();
+    }
+
+    public void runGame(){
         battlePhase();
     }
 
